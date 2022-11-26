@@ -1,25 +1,21 @@
 import random 
 import string
-
-user_id = list(range(1,101))
-rec_id = list(range(1,101))
+import csv 
+import json
+import os 
 
 def generate_message():
-    random_user_id = random.choice(user_id)
-    
-    rec_id_copy = rec_id.copy()
-    rec_id_copy.remove(random_user_id)
+    absolute_path = os.path.dirname(__file__)
+    relative_path = "../crime_rate_Spain.csv"
+    full_path = os.path.join(absolute_path, relative_path)
 
-    random_rec_id = random.choice(rec_id_copy)
-
-    mesg = ''.join(random.choice(string.ascii_letters) for i in range(32))
-
-    return {
-        'user_id' : random_user_id,
-        'recipient_id': random_rec_id,
-        'message': mesg
-    }
+    with open(full_path,encoding = 'utf-8') as csvf:
+        csvReader = csv.DictReader(csvf)
+        for row in csvReader:
+            yield row 
 
 # # test 
 # if __name__ == '__main__':
+#     gen = generate_message()
 #     print(generate_message())
+#     print(next(gen))
