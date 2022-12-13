@@ -5,10 +5,10 @@ import pyspark
 from pyspark.sql import SparkSession
 from pyspark import SparkContext, SparkConf
 
-conf = SparkConf().setAppName("value").setMaster("local")
+conf = SparkConf().setAppName("value").setMaster("spark://localhost:7077")
 sc = SparkContext.getOrCreate(conf = conf)
 
-
+# spark master from docker network inspect project_default 172.18.0.5:7077
 
 # df = spark.sql("Select 'spark' as hello")
 

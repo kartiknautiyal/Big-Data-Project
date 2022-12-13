@@ -41,3 +41,8 @@ services:
       - SPARK_SSL_ENABLED=no
     ports:
       - '8081:8081'
+  jupyter:
+    image: jupyter/pyspark-notebook
+    container_name: jupyter
+    ports:
+      - 8888:8888

@@ -19,17 +19,16 @@ producer = KafkaProducer(
 
 
 if __name__ == '__main__':
-    # Infinite loop - runs until you kill the program
+    # Infinite loop - runs until you kill the program (removed for now while true)
     # Generate a message
     dummy_message = generate_message()
 
     for i in dummy_message:
-        
         
         # Send it to our 'messages' topic
         print(f'Producing message @ {datetime.now()} | Message = {str(i)}')
         producer.send('messages', i)
         
         # Sleep for a random number of seconds
-        # time_to_sleep = random.randint(1, 11)
-        # time.sleep(time_to_sleep)
+        time_to_sleep = random.randint(1, 11)
+        time.sleep(time_to_sleep)
